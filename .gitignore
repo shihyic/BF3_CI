@@ -1,0 +1,29 @@
+# Virtual environments
+.venv/
+venv/
+env/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+# Pytest reports (see pytest.ini: junit, html, log)
+results/
+# Pytest / tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+# Local secrets (adjust if you use env files)
+.env
+.env.*

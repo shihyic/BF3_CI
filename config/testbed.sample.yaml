@@ -1,0 +1,55 @@
+# Sample testbed configuration (no real credentials).
+# Copy to a private file (e.g. config/testbed.yaml) and replace placeholders.
+# Run: pytest --testbed path/to/your.yaml
+#
+# Default in conftest is config/testbed.yaml if you omit --testbed.
+testbed:
+  name: "bf3-ci-example"
+  description: "Example BF3 DPU CI layout ? edit all values before use"
+  dut:
+    - name: "bf3-lab-example"
+      type: "BlueField-3-DK"
+      part_number: "900-9D3B4-00EN-E_DK_Ax"
+      arm:
+        ip: "dpu-arm-oob.example.com"
+        user: "root"
+        password: "CHANGEME_ARM_ROOT_PASSWORD"
+        key: ""
+        default_user: "ubuntu"
+        default_password: "CHANGEME_UBUNTU_PASSWORD"
+      bmc:
+        ip: "10.0.0.50"
+        user: "root"
+        password: "CHANGEME_BMC_PASSWORD"
+        redfish_base: "https://10.0.0.50/redfish/v1"
+      host:
+        ip: "host-server.example.com"
+        user: "root"
+        password: "CHANGEME_HOST_PASSWORD"
+        rshim_device: "/dev/rshim0"
+        pci_address: "00:00.0"
+      network:
+        oob_interface: "oob_net0"
+        data_interfaces: ["p0", "p1"]
+        tmfifo_ip: "192.168.100.2"
+        port_speed: "200GbE"
+      emmc:
+        device: "/dev/mmcblk0"
+      # Optional GPIO test overrides (see functional GPIO tests)
+      # gpio:
+      #   chip: "gpiochip0"
+      #   test_pin: 458
+      #   skip_pins: [0, 1, 2]
+  artifacts:
+    bfb_dir: "/artifacts/bfb/"
+    fw_dir: "/artifacts/firmware/"
+    capsule_dir: "/artifacts/capsules/"
+  # Optional: override defaults from root conftest TIMEOUT_DEFAULTS (seconds)
+  timeouts:
+    ssh_connect: 30
+    boot_wait: 600
+    bfb_install: 2400
+    bfb_complete: 2400
+    rshim_enable: 120
+    rshim_disable: 60
+
